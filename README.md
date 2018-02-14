@@ -2,5 +2,5 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Used
 
-- Axios
+- axios
 - react-router
