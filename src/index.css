@@ -1,0 +1,100 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: #e7e7e7;
+}
+
+.app-header {
+    padding: 20px;
+    background-color: green;
+    font-size: 30px;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.app-footer {
+    text-align: center;
+    padding: 20px;
+}
+
+.app-content {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+.app-content h1 {
+    padding: 0 0 20px 0;
+    margin: 0;
+}
+
+.app-navigation {
+    background-color: #fff;
+    margin: 0 0 20px 0;
+    text-align: center;
+}
+
+.app-navigation li {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.app-navigation a {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #000;
+}
+
+.app-navigation a:hover,
+.app-navigation a.active {
+    background-color: rgba(0, 128, 0, 0.21);
+}
+
+.app-user-list {
+    margin: -20px;
+}
+
+.app-user-element {
+    padding: 20px;
+    border-top: 1px solid #dddddd;
+    display: block;
+    color: #000;
+    text-decoration: none;
+}
+
+.app-user-element:hover {
+    background-color: rgba(0, 128, 0, 0.21);
+}
+
+.app-user-element:first-child {
+    border-top: none;
+}
+
+.app-user-element .user-login {
+    font-size: 12px;
+    color: #444444;
+}
+
+.app-user-info {
+    border-collapse: collapse;
+}
+
+.app-user-info td {
+    padding: 20px 0 0 20px;
+}
+
+.app-user-info td:first-child {
+    padding-left: 0;
+    color: #444444;
+}
+
+.app-user-info tr:first-child td {
+    padding-top: 0;
+}
