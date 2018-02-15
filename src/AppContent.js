@@ -12,13 +12,13 @@ const PageHome = () => (
 
 const PageUsers = () => (
     <div>
-        <UserList/>
+        <UserList />
     </div>
 );
 
 const PageUserView = ({match}) => (
     <div>
-        <UserView userId={match.params.userId}/>
+        <UserView userId={match.params.userId} />
     </div>
 );
 
@@ -31,28 +31,60 @@ const PageContacts = () => (
     </div>
 );
 
+const menu = [
+    {
+        link: '/',
+        label: "Home",
+        exactLink: true,
+        exactRoute: true,
+        showInMenu: true,
+        component: PageHome
+    },
+    {
+        link: '/user',
+        label: "Users",
+        exactLink: false,
+        exactRoute: true,
+        showInMenu: true,
+        component: PageUsers
+    },
+    {
+        link: '/user/:userId',
+        label: "User view",
+        exactLink: false,
+        exactRoute: false,
+        showInMenu: false,
+        component: PageUserView
+    },
+    {
+        link: '/contacts',
+        label: "Contacts",
+        exactLink: false,
+        exactRoute: false,
+        showInMenu: true,
+        component: PageContacts
+    },
+];
+
 class AppContent extends Component {
     render() {
         return (
             <Router>
                 <div>
                     <ul className="app-navigation">
-                        <li>
-                            <NavLink exact to="/">Home</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/user">Users</NavLink>
-                        </li>
-                        <li>
-                            <NavLink to="/contacts">Contacts</NavLink>
-                        </li>
+                        {menu.map((item, index) =>
+                            <li key={index}>
+                                {item.showInMenu &&
+                                    <NavLink exact={item.exactLink} to={item.link}>{item.label}</NavLink>
+                                }
+                            </li>
+                        )}
                     </ul>
 
                     <section className="app-content">
-                        <Route exact path="/" component={PageHome} />
-                        <Route exact path="/user" component={PageUsers} />
-                        <Route path="/user/:userId" component={PageUserView} />
-                        <Route path="/contacts" component={PageContacts} />
+                        {menu.map((item, index) =>
+                            <Route exact={item.exactRoute} path={item.link} component={item.component} key={index} />
+                        )}
                     </section>
                 </div>
             </Router>
