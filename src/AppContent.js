@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import UserList from './userList';
 import UserView from './userView';
 import Contacts from './contacts';
+import Todo from './todo';
 
 const PageHome = () => (
     <div>
@@ -26,6 +27,12 @@ const PageUserView = ({match}) => (
 const PageContacts = () => (
     <div>
         <Contacts />
+    </div>
+);
+
+const PageTodo = () => (
+    <div>
+        <Todo />
     </div>
 );
 
@@ -55,13 +62,21 @@ const menu = [
         component: PageUserView
     },
     {
+        link: '/todo',
+        label: "Todo",
+        exactLink: false,
+        exactRoute: false,
+        showInMenu: true,
+        component: PageTodo
+    },
+    {
         link: '/contacts',
         label: "Contacts",
         exactLink: false,
         exactRoute: false,
         showInMenu: true,
         component: PageContacts
-    },
+    }
 ];
 
 class AppContent extends Component {
