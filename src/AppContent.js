@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
 import UserList from './userList';
 import UserView from './userView';
+import Contacts from './contacts';
 
 const PageHome = () => (
     <div>
@@ -18,16 +19,13 @@ const PageUsers = () => (
 
 const PageUserView = ({match}) => (
     <div>
-        <UserView userId={match.params.userId} />
+        <UserView userId={Number(match.params.userId)} />
     </div>
 );
 
 const PageContacts = () => (
     <div>
-        <h2>Contacts</h2>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error explicabo mollitia saepe sequi voluptates. Consectetur cum iste porro, quae quas totam unde. Accusantium ad ea, inventore iste officiis quaerat repudiandae.<br />
-        <br />
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error explicabo mollitia saepe sequi voluptates. Consectetur cum iste porro, quae quas totam unde. Accusantium ad ea, inventore iste officiis quaerat repudiandae.
+        <Contacts />
     </div>
 );
 

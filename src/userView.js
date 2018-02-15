@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 
 class UserView extends Component {
+    static propTypes = {
+        userId: PropTypes.number.isRequired
+    };
+
     constructor(props) {
         super(props);
 
@@ -24,7 +29,7 @@ class UserView extends Component {
                         posts = posts[i];
                         city = posts.address.city;
                         company = posts.company.name;
-                        console.log(posts);
+                        // console.log(posts);
                     }
                 }
                 this.setState({ posts });
