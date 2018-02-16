@@ -95,6 +95,20 @@ body {
     background-color: #fff;
     font-size: 10px;
     cursor: pointer;
+    margin: 0 0 0 10px;
+}
+
+.app-user-element .edit {
+    float: right;
+    border: 1px solid #ccc;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    background-color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    margin: 0 0 0 10px;
 }
 
 .app-user-info {

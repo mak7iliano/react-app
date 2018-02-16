@@ -17,30 +17,46 @@ const initialState = {
 };
 
 function mainReducer(state = initialState, action) {
-    if (action.type === 'ADD_TODO') {
-        return {
-            ...state,
-            todoList:[...state.todoList, action.payload]
-        }
-    } else if (action.type === 'REMOVE_TODO') {
-        let index = state.todoList.indexOf(action.payload);
-        if (index > -1) {
-            state.todoList.splice(index, 1);
-        }
-        return {
-            ...state,
-            todoList:[...state.todoList]
-        }
-    } else if (action.type === 'ADD_USER_EMAIL') {
-        return {
-            ...state,
-            userEmail:[action.payload]
-        }
-    } else if (action.type === 'REMOVE_USER_EMAIL') {
-        return {
-            ...state,
-            userEmail: ''
-        }
+    switch(action.type) {
+        case 'ADD_TODO':
+            return {
+                ...state,
+                todoList:[...state.todoList, action.payload]
+            };
+
+        case 'REMOVE_TODO':
+            let index = state.todoList.indexOf(action.payload);
+            if (index > -1) {
+                state.todoList.splice(index, 1);
+            }
+            return {
+                ...state,
+                todoList:[...state.todoList]
+            };
+
+        case 'ADD_USER_EMAIL':
+            return {
+                ...state,
+                userEmail:[action.payload]
+            };
+
+        case 'REMOVE_USER_EMAIL':
+            return {
+                ...state,
+                userEmail: ''
+            };
+
+        case 'EDIT_TODO':
+            let editIndex = state.todoList.indexOf(action.payload);
+            if (editIndex > -1) {
+                state.todoList[editIndex] = action.newName;
+            }
+            return {
+                ...state,
+                todoList:[...state.todoList]
+            };
+
+        default: break;
     }
 
     return state;

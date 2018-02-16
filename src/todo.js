@@ -17,6 +17,14 @@ class Todo extends Component {
         this.props.onDeleteTodoElement(event.target.getAttribute('name'));
     }
 
+    editTrack (event) {
+        let newName= prompt("Edit name", event.target.getAttribute('name'));
+        if (newName && newName !== event.target.getAttribute('name')) {
+            this.props.onEditTodoElement(event.target.getAttribute('name'), newName);
+        }
+
+    }
+
     render() {
         return (
             <div>
@@ -28,6 +36,7 @@ class Todo extends Component {
                     {this.props.todoStore.map((todoItem, index) =>
                         <li className="app-user-element" key={index}>
                             <div className="remove" name={todoItem} onClick={this.deleteTrack.bind(this)}>x</div>
+                            <div className="edit" name={todoItem} onClick={this.editTrack.bind(this)}>&#x270e;</div>
                             {todoItem}
                         </li>
                     )}
@@ -47,6 +56,9 @@ export default connect(
         },
         onDeleteTodoElement: (todoItem) => {
             dispatch({type: 'REMOVE_TODO', payload: todoItem})
+        },
+        onEditTodoElement: (todoItem, newName) => {
+            dispatch({type: 'EDIT_TODO', payload: todoItem, newName: newName})
         }
     })
 )(Todo);
