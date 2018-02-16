@@ -3,27 +3,32 @@ import { connect } from 'react-redux';
 
 class Todo extends Component {
     addTrack() {
-        this.props.onAddTrack(this.trackInput.value);
-        this.trackInput.value = '';
-        this.trackInput.focus();
+        if (this.todoInput.value) {
+            this.props.onAddTodoElement(this.todoInput.value);
+            this.todoInput.setAttribute('placeholder', 'Todo');
+        } else {
+            this.todoInput.setAttribute('placeholder', 'Specify name');
+        }
+        this.todoInput.value = '';
+        this.todoInput.focus();
     }
 
     deleteTrack(event) {
-        this.props.onDeleteTrack(event.target.getAttribute('name'));
+        this.props.onDeleteTodoElement(event.target.getAttribute('name'));
     }
 
     render() {
         return (
             <div>
                 <div className="app-todo-form">
-                    <input type="text" placeholder="Todo" ref={(input) => {this.trackInput = input}} />
+                    <input type="text" placeholder="Todo" ref={(input) => {this.todoInput = input}} />
                     <button onClick={this.addTrack.bind(this)}>Add</button>
                 </div>
                 <ul className="app-user-list">
-                    {this.props.testStore.map((track, index) =>
+                    {this.props.todoStore.map((todoItem, index) =>
                         <li className="app-user-element" key={index}>
-                            <div className="remove" name={track} onClick={this.deleteTrack.bind(this)}>x</div>
-                            {track}
+                            <div className="remove" name={todoItem} onClick={this.deleteTrack.bind(this)}>x</div>
+                            {todoItem}
                         </li>
                     )}
                 </ul>
@@ -34,14 +39,14 @@ class Todo extends Component {
 
 export default connect(
     state => ({
-        testStore: state
+        todoStore: state.todoList
     }),
     dispatch => ({
-        onAddTrack: (trackName) => {
-            dispatch({type: 'ADD_TRACK', payload: trackName})
+        onAddTodoElement: (todoItem) => {
+            dispatch({type: 'ADD_TODO', payload: todoItem})
         },
-        onDeleteTrack: (trackName) => {
-            dispatch({type: 'REMOVE_TRACK', payload: trackName})
+        onDeleteTodoElement: (todoItem) => {
+            dispatch({type: 'REMOVE_TODO', payload: todoItem})
         }
     })
 )(Todo);

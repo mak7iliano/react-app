@@ -119,6 +119,20 @@ body {
     margin: 0 auto;
 }
 
+.app-form .form-message {
+    max-width: 350px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    border: 1px solid green;
+    padding: 10px;
+    background-color: rgba(0, 128, 0, 0.21);
+}
+
+.app-form .form-message .email {
+    display: block;
+    font-size: 12px;
+}
+
 .app-form .form-element {
     margin: 10px 0 0 0;
 }
