@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 
 class Todo extends Component {
     addTrack() {
-        if (this.todoInput.value) {
-            this.props.onAddTodoElement(this.todoInput.value);
-            this.todoInput.setAttribute('placeholder', 'Todo');
+        if (this.refs.todoInput.value) {
+            this.props.onAddTodoElement(this.refs.todoInput.value);
+            this.refs.todoInput.setAttribute('placeholder', 'Todo');
         } else {
-            this.todoInput.setAttribute('placeholder', 'Specify name');
+            this.refs.todoInput.setAttribute('placeholder', 'Specify name');
         }
-        this.todoInput.value = '';
-        this.todoInput.focus();
+        this.refs.todoInput.value = '';
+        this.refs.todoInput.focus();
     }
 
     deleteTrack(event) {
@@ -29,7 +29,7 @@ class Todo extends Component {
         return (
             <div>
                 <div className="app-todo-form">
-                    <input type="text" placeholder="Todo" ref={(input) => {this.todoInput = input}} />
+                    <input type="text" placeholder="Todo" ref="todoInput" />
                     <button onClick={this.addTrack.bind(this)}>Add</button>
                 </div>
                 <ul className="app-user-list">
