@@ -16,6 +16,46 @@ body {
     text-align: center;
     font-weight: bold;
     text-transform: uppercase;
+
+    .header-mainer {
+        position: relative;
+        max-width: 960px;
+        margin: 0 auto;
+    }
+
+    .lang-buttons {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+
+        button {
+            display: block;
+            margin: 10px 0 0 0;
+            padding: 0;
+            width: 16px;
+            height: 11px;
+            border: none;
+            cursor: pointer;
+            outline: none;
+
+            &:first-child {
+                margin: 0;
+            }
+
+            &.ru {
+                background: url("/ru.png");
+            }
+
+            &.en {
+                background: url("/en.png");
+            }
+
+            &[data-selected="true"] {
+                box-shadow: 0 0 5px 3px #fff;
+            }
+        }
+    }
 }
 
 .app-footer {
@@ -29,6 +69,7 @@ body {
     border-radius: 5px;
     max-width: 960px;
     margin: 0 auto;
+    box-sizing: border-box;
 
     h1 {
         padding: 0 0 20px 0;
