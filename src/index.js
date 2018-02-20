@@ -7,62 +7,64 @@ import './index.css';
 import App from "./App";
 import registerServiceWorker from './registerServiceWorker';
 
-const initialState = {
-    todoList: [
-        'react',
-        'react-redux',
-        'react-thunk'
-    ],
-    userEmail: ''
-};
+import reducer from "./reducers"
 
-function mainReducer(state = initialState, action) {
-    switch(action.type) {
-        case 'ADD_TODO':
-            return {
-                ...state,
-                todoList:[...state.todoList, action.payload]
-            };
+// const initialState = {
+//     todoList: [
+//         'react',
+//         'react-redux',
+//         'react-thunk'
+//     ],
+//     userEmail: ''
+// };
+//
+// function mainReducer(state = initialState, action) {
+//     switch(action.type) {
+//         case 'ADD_TODO':
+//             return {
+//                 ...state,
+//                 todoList:[...state.todoList, action.payload]
+//             };
+//
+//         case 'REMOVE_TODO':
+//             let index = state.todoList.indexOf(action.payload);
+//             if (index > -1) {
+//                 state.todoList.splice(index, 1);
+//             }
+//             return {
+//                 ...state,
+//                 todoList:[...state.todoList]
+//             };
+//
+//         case 'ADD_USER_EMAIL':
+//             return {
+//                 ...state,
+//                 userEmail:[action.payload]
+//             };
+//
+//         case 'REMOVE_USER_EMAIL':
+//             return {
+//                 ...state,
+//                 userEmail: ''
+//             };
+//
+//         case 'EDIT_TODO':
+//             let editIndex = state.todoList.indexOf(action.payload);
+//             if (editIndex > -1) {
+//                 state.todoList[editIndex] = action.newName;
+//             }
+//             return {
+//                 ...state,
+//                 todoList:[...state.todoList]
+//             };
+//
+//         default: break;
+//     }
+//
+//     return state;
+// }
 
-        case 'REMOVE_TODO':
-            let index = state.todoList.indexOf(action.payload);
-            if (index > -1) {
-                state.todoList.splice(index, 1);
-            }
-            return {
-                ...state,
-                todoList:[...state.todoList]
-            };
-
-        case 'ADD_USER_EMAIL':
-            return {
-                ...state,
-                userEmail:[action.payload]
-            };
-
-        case 'REMOVE_USER_EMAIL':
-            return {
-                ...state,
-                userEmail: ''
-            };
-
-        case 'EDIT_TODO':
-            let editIndex = state.todoList.indexOf(action.payload);
-            if (editIndex > -1) {
-                state.todoList[editIndex] = action.newName;
-            }
-            return {
-                ...state,
-                todoList:[...state.todoList]
-            };
-
-        default: break;
-    }
-
-    return state;
-}
-
-const store = createStore(mainReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 ReactDOM.render(
     <Provider store={store}>

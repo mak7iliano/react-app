@@ -48,7 +48,7 @@ class Todo extends Component {
 
 export default connect(
     state => ({
-        todoStore: state.todoList
+        todoStore: state.todo
     }),
     dispatch => ({
         onAddTodoElement: (todoItem) => {

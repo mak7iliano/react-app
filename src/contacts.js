@@ -36,7 +36,7 @@ class Contacts extends Component {
                 <br />
 
 
-                {this.props.emailStore ?
+                {this.props.emailStore.length ?
                     <div className="app-form">
                         <div className="form-message">
                             You are subscribed to the newsletter!
@@ -63,7 +63,7 @@ class Contacts extends Component {
 
 export default connect(
     state => ({
-        emailStore: state.userEmail
+        emailStore: state.contacts
     }),
     dispatch => ({
         onSaveEmail: (userEmail) => {
