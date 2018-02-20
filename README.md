@@ -5,3 +5,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - axios
 - react-router
 - redux
+- react-i18next

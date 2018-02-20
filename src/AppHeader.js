@@ -1,15 +1,35 @@
 import React, { Component } from 'react';
 import { translate } from 'react-i18next';
+import {withRouter} from "react-router-dom";
 import './i18n';
-
 
 class AppHeader extends Component {
     render() {
         const { i18n } = this.props;
+        var routerPath = this.props.location.pathname;
+
+        if (i18n.language !== 'en') {
+            let result = this.props.location.pathname.indexOf(i18n.language);
+
+            if (result < 0) {
+                this.props.history.push('/'+i18n.language + routerPath);
+            }
+        }
 
         const changeLanguage = (lng) => {
+            let currentLang = i18n.language;
             i18n.changeLanguage(lng);
-        }
+
+            if (currentLang !== lng) {
+                if (i18n.language === 'en') {
+                    routerPath = routerPath.replace('/'+currentLang, '');
+                } else {
+                    routerPath = '/' + i18n.language + routerPath;
+                }
+
+                this.props.history.push(routerPath);
+            }
+        };
 
         return (
             <header className="app-header">
@@ -25,4 +45,4 @@ class AppHeader extends Component {
     }
 }
 
-export default translate('translations')(AppHeader);
+export default withRouter(translate('translations')(AppHeader));

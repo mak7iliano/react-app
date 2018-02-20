@@ -46,7 +46,7 @@ class Contacts extends Component {
                             <button onClick={this.handleUnsubscribe}>Unsubscribe</button>
                         </div>
                     </div>
-                     :
+                    :
                     <form onSubmit={this.handleSubmit} className="app-form">
                         <div className="form-element">
                             <input type="email" placeholder="Your email" value={this.state.email} onChange={this.handleEmailChange} required />
