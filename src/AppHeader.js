@@ -5,15 +5,20 @@ import './i18n';
 
 class AppHeader extends Component {
     render() {
+        const langList = ['en', 'ru'];
         const { i18n } = this.props;
+
         var routerPath = this.props.location.pathname;
+        let routeLang;
 
-        if (i18n.language !== 'en') {
-            let result = this.props.location.pathname.indexOf(i18n.language);
+        if (langList.indexOf(routerPath.split('/')[1]) === -1) {
+            routeLang = 'en';
+        } else {
+            routeLang = routerPath.split('/')[1];
+        }
 
-            if (result < 0) {
-                this.props.history.push('/'+i18n.language + routerPath);
-            }
+        if (routeLang !== i18n.language) {
+            i18n.changeLanguage(routeLang);
         }
 
         const changeLanguage = (lng) => {

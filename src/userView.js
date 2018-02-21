@@ -68,7 +68,6 @@ class UserView extends Component {
                 </table>
 
             </div>
-
         );
     }
 }
