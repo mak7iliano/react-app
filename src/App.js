@@ -8,43 +8,13 @@ import UserList from './userList';
 import UserView from './userView';
 import Contacts from './contacts';
 import Todo from './todo';
+import Home from './home';
 import AppHeader from './AppHeader'
 import AppFooter from './AppFooter'
 
 class App extends Component {
     render() {
         const { t, i18n } = this.props;
-
-        const PageHome = () => (
-            <div>
-                <h1>{t('naviHome')}</h1>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error explicabo mollitia saepe sequi voluptates. Consectetur cum iste porro, quae quas totam unde. Accusantium ad ea, inventore iste officiis quaerat repudiandae.
-            </div>
-        );
-
-        const PageUsers = () => (
-            <div>
-                <UserList />
-            </div>
-        );
-
-        const PageUserView = ({match}) => (
-            <div>
-                <UserView userId={Number(match.params.userId)} />
-            </div>
-        );
-
-        const PageContacts = () => (
-            <div>
-                <Contacts />
-            </div>
-        );
-
-        const PageTodo = () => (
-            <div>
-                <Todo />
-            </div>
-        );
 
         var routerPrefix = '';
         if (i18n.language !== 'en') {
@@ -58,7 +28,7 @@ class App extends Component {
                 exactLink: true,
                 exactRoute: true,
                 showInMenu: true,
-                component: PageHome
+                component: Home
             },
             {
                 link: routerPrefix + '/user',
@@ -66,7 +36,7 @@ class App extends Component {
                 exactLink: false,
                 exactRoute: true,
                 showInMenu: true,
-                component: PageUsers
+                component: UserList
             },
             {
                 link: routerPrefix + '/user/:userId',
@@ -74,7 +44,7 @@ class App extends Component {
                 exactLink: false,
                 exactRoute: false,
                 showInMenu: false,
-                component: PageUserView
+                component: UserView
             },
             {
                 link: routerPrefix + '/todo',
@@ -82,7 +52,7 @@ class App extends Component {
                 exactLink: false,
                 exactRoute: false,
                 showInMenu: true,
-                component: PageTodo
+                component: Todo
             },
             {
                 link: routerPrefix + '/contacts',
@@ -90,7 +60,7 @@ class App extends Component {
                 exactLink: false,
                 exactRoute: false,
                 showInMenu: true,
-                component: PageContacts
+                component: Contacts
             }
         ];
 

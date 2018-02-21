@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import axios from 'axios';
 
 class UserView extends Component {
-    static propTypes = {
-        userId: PropTypes.number.isRequired
-    };
+    // static propTypes = {
+    //     userId: PropTypes.number.isRequired
+    // };
 
     constructor(props) {
         super(props);
@@ -15,6 +15,8 @@ class UserView extends Component {
             city: '',
             company: ''
         };
+
+        console.log(this.props);
     }
 
     componentDidMount() {
@@ -25,7 +27,7 @@ class UserView extends Component {
                 let company = res.data;
 
                 for (let i = 0; i < posts.length; i++) {
-                    if (posts[i].id === Number(this.props.userId)) {
+                    if (posts[i].id === Number(this.props.match.params.userId)) {
                         posts = posts[i];
                         city = posts.address.city;
                         company = posts.company.name;
@@ -39,6 +41,8 @@ class UserView extends Component {
     }
 
     render() {
+
+
         return (
             <div>
                 <h1>{this.state.posts.name}</h1>
@@ -56,14 +60,14 @@ class UserView extends Component {
                             <td>Website:</td>
                             <td>{this.state.posts.website}</td>
                         </tr>
-                        <tr>
-                            <td>City:</td>
-                            <td>{this.state.city}</td>
-                        </tr>
-                        <tr>
-                            <td>Company:</td>
-                            <td>{this.state.company}</td>
-                        </tr>
+                        {/*<tr>*/}
+                            {/*<td>City:</td>*/}
+                            {/*<td>{this.state.city}</td>*/}
+                        {/*</tr>*/}
+                        {/*<tr>*/}
+                            {/*<td>Company:</td>*/}
+                            {/*<td>{this.state.company}</td>*/}
+                        {/*</tr>*/}
                     </tbody>
                 </table>
 
