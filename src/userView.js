@@ -1,79 +1,77 @@
 import React, { Component } from 'react';
-// import PropTypes from 'prop-types';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import { itemsFetchData } from './actions/users';
 
 class UserView extends Component {
-    // static propTypes = {
-    //     userId: PropTypes.number.isRequired
-    // };
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            posts: [],
-            city: '',
-            company: ''
-        };
-
-        console.log(this.props);
-    }
-
     componentDidMount() {
-        axios.get(`https://jsonplaceholder.typicode.com/users`)
-            .then(res => {
-                let posts = res.data;
-                let city = res.data;
-                let company = res.data;
-
-                for (let i = 0; i < posts.length; i++) {
-                    if (posts[i].id === Number(this.props.match.params.userId)) {
-                        posts = posts[i];
-                        city = posts.address.city;
-                        company = posts.company.name;
-                        // console.log(posts);
-                    }
-                }
-                this.setState({ posts });
-                this.setState({ city });
-                this.setState({ company });
-            });
+        if(!this.props.users.length) {
+            this.props.fetchData('https://jsonplaceholder.typicode.com/users/', this.props.match.params.userId);
+        }
     }
 
     render() {
+        let list=[];
+        let city;
+        let company;
 
+        if(this.props.users.length) {
+            list = this.props.users;
+            for (let i = 0; i < list.length; i++) {
+                if (list[i].id === Number(this.props.match.params.userId)) {
+                    list = list[i];
+                    city = list.address.city;
+                    company = list.company.name;
+                }
+            }
+        } else if (this.props.user.address) {
+            list = this.props.user;
+            city = list.address.city;
+            company = list.company.name;
+        }
 
         return (
             <div>
-                <h1>{this.state.posts.name}</h1>
+                <h1>{list.name}</h1>
                 <table className="app-user-info">
                     <tbody>
                         <tr>
                             <td>Email:</td>
-                            <td>{this.state.posts.email}</td>
+                            <td>{list.email}</td>
                         </tr>
                         <tr>
                             <td>Phone:</td>
-                            <td>{this.state.posts.phone}</td>
+                            <td>{list.phone}</td>
                         </tr>
                         <tr>
                             <td>Website:</td>
-                            <td>{this.state.posts.website}</td>
+                            <td>{list.website}</td>
                         </tr>
-                        {/*<tr>*/}
-                            {/*<td>City:</td>*/}
-                            {/*<td>{this.state.city}</td>*/}
-                        {/*</tr>*/}
-                        {/*<tr>*/}
-                            {/*<td>Company:</td>*/}
-                            {/*<td>{this.state.company}</td>*/}
-                        {/*</tr>*/}
+                        <tr>
+                            <td>City:</td>
+                            <td>{city}</td>
+                        </tr>
+                        <tr>
+                            <td>Company:</td>
+                            <td>{company}</td>
+                        </tr>
                     </tbody>
                 </table>
-
             </div>
         );
     }
 }
 
-export default UserView;
+const mapStateToProps = (state) => {
+  return {
+    users: state.users,
+    user: state.user,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchData: (url, id) => dispatch(itemsFetchData(url, id))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserView);
